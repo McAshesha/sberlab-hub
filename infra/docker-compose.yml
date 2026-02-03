@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sberlab-postgres
+    environment:
+      POSTGRES_DB: sberlab
+      POSTGRES_USER: sberlab
+      POSTGRES_PASSWORD: sberlab
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: sberlab-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:

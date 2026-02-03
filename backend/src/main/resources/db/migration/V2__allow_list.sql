@@ -1,0 +1,7 @@
+CREATE TABLE allow_list (
+    id         BIGSERIAL PRIMARY KEY,
+    email      VARCHAR(255) NOT NULL,
+    role       VARCHAR(20)  NOT NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT now(),
+    UNIQUE (email, role)
+);
